@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 public class LoginFrame extends JFrame {
     private BankingService bankingService;
     private JTextField usernameField;
-    private JPasswordField passwordField;
+   gi private JPasswordField passwordField;
     private JTextField fullNameField;
     private JPanel cardPanel;
     private CardLayout cardLayout;
@@ -510,18 +510,34 @@ public class LoginFrame extends JFrame {
                     return;
                 } catch (Exception e) {
                     retries++;
-                    System.out.println("Thử kết nối lần " + retries + "/5...");
+                    String errorMsg = e.getMessage();
+                    System.out.println("Thử kết nối lần " + retries + "/5... Lỗi: " + errorMsg);
+                    
                     if (retries >= 5) {
                         SwingUtilities.invokeLater(() -> {
-                            String message = "Không thể kết nối đến server.\n" +
-                                           "Server URL: " + serverURL + "\n\n" +
-                                           "Vui lòng kiểm tra:\n" +
-                                           "1. Server đã được khởi động chưa?\n" +
-                                           "2. Địa chỉ IP trong config.properties có đúng không?\n" +
-                                           "3. Firewall có chặn port " + SERVER_PORT + " không?";
+                            StringBuilder message = new StringBuilder();
+                            message.append("❌ KHÔNG THỂ KẾT NỐI ĐẾN SERVER\n\n");
+                            message.append("Server URL: ").append(serverURL).append("\n");
+                            message.append("Lỗi: ").append(errorMsg).append("\n\n");
+                            message.append("📋 HƯỚNG DẪN KHẮC PHỤC:\n\n");
+                            message.append("1. Trên máy SERVER (IP: ").append(SERVER_HOST).append("):\n");
+                            message.append("   ✓ Chạy: java BankingServer\n");
+                            message.append("   ✓ Kiểm tra IP hiển thị trên server có đúng không\n");
+                            message.append("   ✓ Đảm bảo port ").append(SERVER_PORT).append(" không bị chặn\n\n");
+                            message.append("2. Trên máy CLIENT (máy này):\n");
+                            message.append("   ✓ Kiểm tra file config.properties:\n");
+                            message.append("     server.host=").append(SERVER_HOST).append("\n");
+                            message.append("     server.port=").append(SERVER_PORT).append("\n\n");
+                            message.append("3. Kiểm tra Firewall:\n");
+                            message.append("   ✓ Windows Firewall: Cho phép port ").append(SERVER_PORT).append("\n");
+                            message.append("   ✓ Antivirus: Tắt tạm thời để test\n\n");
+                            message.append("4. Kiểm tra mạng:\n");
+                            message.append("   ✓ Ping đến ").append(SERVER_HOST).append(": ping ").append(SERVER_HOST).append("\n");
+                            message.append("   ✓ Cả 2 máy cùng mạng LAN\n");
+                            
                             JOptionPane.showMessageDialog(this,
-                                message,
-                                "Lỗi kết nối",
+                                message.toString(),
+                                "Lỗi kết nối - " + retries + " lần thử",
                                 JOptionPane.ERROR_MESSAGE);
                         });
                     } else {
