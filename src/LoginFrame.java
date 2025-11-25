@@ -67,7 +67,7 @@ public class LoginFrame extends JFrame {
     private void initializeGUI() {
         setTitle("E-Banking - Đăng nhập");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(450, 580);
+        setSize(450, 680);
         setLocationRelativeTo(null);
         setResizable(false);
         
