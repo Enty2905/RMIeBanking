@@ -1,0 +1,18 @@
+{
+  "10000": {
+    "accountNumber": "10000",
+    "balance": 800.0
+  },
+  "01234": {
+    "accountNumber": "01234",
+    "balance": 5000.0
+  },
+  "12345": {
+    "accountNumber": "12345",
+    "balance": 10000.0
+  },
+  "10001": {
+    "accountNumber": "10001",
+    "balance": 201.0
+  }
+}

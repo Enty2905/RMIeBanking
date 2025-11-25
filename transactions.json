@@ -1,0 +1,76 @@
+{
+  "transactions": [
+    {
+      "transactionId": "TXN1764046864038",
+      "accountNumber": "10000",
+      "transactionType": "DEPOSIT",
+      "amount": 1000.0,
+      "description": "Nạp tiền vào tài khoản",
+      "relatedAccount": ",",
+      "timestamp": 1764046864038
+    },
+    {
+      "transactionId": "TXN1764046882860",
+      "accountNumber": "10000",
+      "transactionType": "TRANSFER_OUT",
+      "amount": 1.0,
+      "description": "Trả tiền",
+      "relatedAccount": "10001",
+      "timestamp": 1764046882860
+    },
+    {
+      "transactionId": "TXN1764046882860",
+      "accountNumber": "10001",
+      "transactionType": "TRANSFER_IN",
+      "amount": 1.0,
+      "description": "Trả tiền",
+      "relatedAccount": "10000",
+      "timestamp": 1764046882860
+    },
+    {
+      "transactionId": "TXN1764047113862",
+      "accountNumber": "10000",
+      "transactionType": "TRANSFER_OUT",
+      "amount": 100.0,
+      "description": "EEEE",
+      "relatedAccount": "10001",
+      "timestamp": 1764047113862
+    },
+    {
+      "transactionId": "TXN1764047113862",
+      "accountNumber": "10001",
+      "transactionType": "TRANSFER_IN",
+      "amount": 100.0,
+      "description": "EEEE",
+      "relatedAccount": "10000",
+      "timestamp": 1764047113862
+    },
+    {
+      "transactionId": "TXN1764047743846",
+      "accountNumber": "10000",
+      "transactionType": "DEPOSIT",
+      "amount": 1.0,
+      "description": "Nạp tiền vào tài khoản",
+      "relatedAccount": ",",
+      "timestamp": 1764047743846
+    },
+    {
+      "transactionId": "TXN1764048069371",
+      "accountNumber": "10000",
+      "transactionType": "TRANSFER_OUT",
+      "amount": 100.0,
+      "description": "Trả tiền",
+      "relatedAccount": "10001",
+      "timestamp": 1764048069371
+    },
+    {
+      "transactionId": "TXN1764048069371",
+      "accountNumber": "10001",
+      "transactionType": "TRANSFER_IN",
+      "amount": 100.0,
+      "description": "Trả tiền",
+      "relatedAccount": "10000",
+      "timestamp": 1764048069371
+    }
+  ]
+}
