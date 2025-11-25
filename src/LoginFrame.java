@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 public class LoginFrame extends JFrame {
     private BankingService bankingService;
     private JTextField usernameField;
-   gi private JPasswordField passwordField;
+    private JPasswordField passwordField;
     private JTextField fullNameField;
     private JPanel cardPanel;
     private CardLayout cardLayout;
@@ -496,11 +496,11 @@ public class LoginFrame extends JFrame {
     
     private void connectToServer() {
         new Thread(() -> {
-            int retries = 0;
+            final int[] retries = {0};
             String serverURL = getServerURL();
             System.out.println("Đang kết nối đến: " + serverURL);
             
-            while (retries < 5) {
+            while (retries[0] < 5) {
                 try {
                     bankingService = (BankingService) Naming.lookup(serverURL);
                     System.out.println("Kết nối thành công đến server!");
@@ -509,11 +509,11 @@ public class LoginFrame extends JFrame {
                     });
                     return;
                 } catch (Exception e) {
-                    retries++;
+                    retries[0]++;
                     String errorMsg = e.getMessage();
-                    System.out.println("Thử kết nối lần " + retries + "/5... Lỗi: " + errorMsg);
+                    System.out.println("Thử kết nối lần " + retries[0] + "/5... Lỗi: " + errorMsg);
                     
-                    if (retries >= 5) {
+                    if (retries[0] >= 5) {
                         SwingUtilities.invokeLater(() -> {
                             StringBuilder message = new StringBuilder();
                             message.append("❌ KHÔNG THỂ KẾT NỐI ĐẾN SERVER\n\n");
@@ -535,9 +535,9 @@ public class LoginFrame extends JFrame {
                             message.append("   ✓ Ping đến ").append(SERVER_HOST).append(": ping ").append(SERVER_HOST).append("\n");
                             message.append("   ✓ Cả 2 máy cùng mạng LAN\n");
                             
-                            JOptionPane.showMessageDialog(this,
+                            JOptionPane.showMessageDialog(LoginFrame.this,
                                 message.toString(),
-                                "Lỗi kết nối - " + retries + " lần thử",
+                                "Lỗi kết nối - " + retries[0] + " lần thử",
                                 JOptionPane.ERROR_MESSAGE);
                         });
                     } else {
